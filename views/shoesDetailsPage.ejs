@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoes Details</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <%- include('header') %>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header" align="center">Shoes Information</header>
+      <div align="center" class="photo-container">
+        <img src="<%= shoes.photo %>" class="photo" />
+      </div>
+      <div class="row py-4" style="margin-left: 42%">
+        <div class="col-sm-2">
+          <a
+            class="btn btn-primary"
+            href="/shoes/updateForm/<%= shoes.id %>"
+            >Edit</a
+          >
+        </div>
+        <div class="col-sm-2">
+          <a class="btn btn-danger" href="/shoes/delete/<%= shoes.id %>"
+            >Delete</a
+          >
+        </div>
+      </div>
+      <div class="container py-3">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td><%= shoes.name %></td>
+            </tr>
+            <tr>
+              <td>Age</td>
+              <td><%= shoes.age %></td>
+            </tr>
+            <tr>
+              <td>ID Number</td>
+              <td><%= shoes.id_card_number %></td>
+            </tr>
+            <tr>
+              <td>Phone Number</td>
+              <td><%= shoes.phone_number %></td>
+            </tr>
+            <tr>
+              <td>Nationality</td>
+              <td><%= shoes.nationality %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <header class="header" align="center">Your Mereks</header>
+      <div class="container">
+        <div class="card">
+          <div class="row py-3">
+            <% detailsObj.supliers.forEach((suplier) => { %>
+            <div class="col-sm-3">
+              <img
+                src="<%= suplier.image %>"
+                class="card-img-top"
+                alt="..."
+              />
+              <h5><%= suplier.name %></h5>
+            </div>
+            <% }) %>
+            <div class="row">
+              <% detailsObj.mereksData.forEach((merek) => { %>
+              <div class="col-sm-3">
+                <h6 class="card-title" style="font-weight: bold">
+                  Visit Date: <%= merek.visit_date %>
+                </h6>
+                <h6 class="card-title" style="font-weight: bold">
+                  Qty: <%= ticket.qty %>
+                </h6>
+                <% if (ticket.grossAmount === 0){ %>
+                <h6 class="card-title" style="font-weight: bold; color: gold">
+                  FREE
+                </h6>
+                <% } else { %>
+                <h6 class="card-title" style="font-weight: bold">
+                  Total Price: <%= merek.grossAmount %>
+                </h6>
+                <% } %>
+
+                <div class="row">
+                  <div class="col">
+                    <a
+                      class="btn bg-primary"
+                      style="color: white"
+                      href="/merek/updateForm/<%= merek.id %>/<%= merek.id %>"
+                      >Edit</a
+                    >
+                  </div>
+                  <div class="col">
+                    <a
+                      class="btn bg-danger"
+                      style="color: white"
+                      href="/merek/delete/<%= merek.id %>/<%= merek.id %>"
+                      >Delete</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

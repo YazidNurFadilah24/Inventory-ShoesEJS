@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supliers</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <%- include('header') %>
+  </head>
+  <body>
+    <div class="row">
+      <header class="header">List of Supliers</header>
+      <a
+        class="col-sm-3"
+        style="
+          text-decoration: none;
+          font-weight: bold;
+          padding-top: 10px;
+          padding-left: 70px;
+          position: absolute;
+          right: 0;
+        "
+        href="/suplier/addSuplier"
+        ><i class="fa fa-plus-square px-2"></i>Add Suplier</a
+      >
+    </div>
+    <div class="container py-3">
+      <div class="row">
+        <% if (supliers.length !== 0){ %> <%
+        supliers.forEach((suplier) => { %>
+        <div class="card col-sm-4" style="width: 18rem">
+          <img src="<%= destination.image %>" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title"><%= suplier.name %></h5>
+            <p style="font-weight: bold; color: rgb(18, 79, 148)">
+              <%= suplier.type %>
+            </p>
+            <div class="row">
+              <div class="col">
+                <p>Rp.</p>
+              </div>
+              <div class="col">
+                <% if(suplier.price === 0){ %>
+                <p style="color: gold; font-weight: bold">FREE</p>
+                <% } else { %>
+                <p style="color: green; font-weight: bold">
+                  <%= suplier.price %>
+                </p>
+                <% } %>
+              </div>
+            </div>
+            <p><%= suplier.description %></p>
+            <div class="col">
+              <a
+                href="/suplier/updateSuplier/<%= suplier.id %>"
+                class="btn btn-primary"
+                >Edit</a
+              >
+              <a
+                href="/suplier/delete/<%= suplier.id %>"
+                class="btn btn-danger"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </div>
+        <% }) %> <% } else { %>
+        <header class="header">
+          No Suplier
+        </header>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

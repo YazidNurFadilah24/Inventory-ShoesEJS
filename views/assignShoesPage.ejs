@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoes In</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <%- include('header') %>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">Please input shoes</header>
+      <div class="row py-3">
+        <% shoesList.forEach((shoes) => { %>
+        <div class="col-sm-2">
+          <div class="card" style="width: 9rem" align="center">
+            <img src="<%= tourist.photo %>" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title"><%= shoes.name %></h5>
+              <form method="get" action="/merek/addMerek/<%= merek.id %>">
+                <button
+                  type="submit"
+                  value="Submit"
+                  class="btn-primary px-2 py-1"
+                  style="border-radius: 5px"
+                >
+                  Choose
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
+
+
